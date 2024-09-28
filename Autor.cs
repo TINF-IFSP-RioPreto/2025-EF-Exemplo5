@@ -1,4 +1,7 @@
-﻿namespace EF.Exemplo5;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace EF.Exemplo5;
 
 public class Autor
 {
@@ -7,4 +10,12 @@ public class Autor
     public ICollection<Livro> Livros { get; set; }
 
     public Autor() { }
+}
+
+public class AutorConfiguration : IEntityTypeConfiguration<Autor>
+{
+    public void Configure(EntityTypeBuilder<Autor> builder)
+    {
+        builder.Property(t => t.AutorNome).HasMaxLength(80).IsRequired();
+    }
 }

@@ -19,13 +19,7 @@ public class LivrariaDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Autor>().
-            Property(t => t.AutorNome).
-            IsRequired().
-            HasMaxLength(80);
-        modelBuilder.Entity<Livro>().
-            Property(t => t.LivroTitulo).
-            IsRequired().
-            HasMaxLength(120);
+        modelBuilder.ApplyConfiguration(new AutorConfiguration());
+        modelBuilder.ApplyConfiguration(new LivroConfiguration());
     }
 }
